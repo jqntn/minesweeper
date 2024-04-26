@@ -18,6 +18,10 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
+target_compile_options(minesweeper PRIVATE "-Wall")
+
 target_link_libraries(minesweeper PRIVATE raylib)
 
-target_compile_options(minesweeper PRIVATE "-Wall")
+if(MSVC)
+  target_link_options(minesweeper PRIVATE "$<$<NOT:$<CONFIG:Debug>>:LINKER:/SUBSYSTEM:WINDOWS,/ENTRY:mainCRTStartup>")
+endif()
