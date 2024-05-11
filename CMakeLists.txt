@@ -16,10 +16,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
-target_compile_options(minesweeper PRIVATE "-Wall")
-
 target_link_libraries(minesweeper PRIVATE raylib)
+if (APPLE)
+  target_link_libraries(minesweeper PRIVATE "-framework IOKit")
+  target_link_libraries(minesweeper PRIVATE "-framework Cocoa")
+  target_link_libraries(minesweeper PRIVATE "-framework OpenGL")
+endif()
 
+target_compile_options(minesweeper PRIVATE "-Wall")
 if(MSVC)
   target_link_options(minesweeper PRIVATE "$<$<NOT:$<CONFIG:Debug>>:LINKER:/SUBSYSTEM:WINDOWS,/ENTRY:mainCRTStartup>")
 endif()
