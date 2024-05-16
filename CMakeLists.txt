@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 
 project(minesweeper)
 
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-string(REPLACE "/MDd" "" CMAKE_C_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG})
+set(CMAKE_MSVC_RUNTIME_LIBRARY "$<$<NOT:$<CONFIG:Debug>>:MultiThreaded>")
 
 add_executable(minesweeper "minesweeper.c")
 
