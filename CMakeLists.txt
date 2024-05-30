@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(minesweeper)
+project(minesweeper LANGUAGES C)
 
 set(CMAKE_MSVC_RUNTIME_LIBRARY "$<$<NOT:$<CONFIG:Debug>>:MultiThreaded>")
 
