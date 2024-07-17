@@ -1,71 +1,66 @@
-/*******************************************************************************************
- *
- *   raylib [core] example - Basic window
- *
- *   Welcome to raylib!
- *
- *   To test examples, just press F6 and execute raylib_compile_execute script
- *   Note that compiled executable is placed in the same folder as .c file
- *
- *   You can find all basic examples on C:\raylib\raylib\examples folder or
- *   raylib official webpage: www.raylib.com
- *
- *   Enjoy using raylib. :)
- *
- *   Example originally created with raylib 1.0, last time updated with
- *raylib 1.0
- *
- *   Example licensed under an unmodified zlib/libpng license, which is an
- *OSI-certified, BSD-like license that allows static linking with closed source
- *software
- *
- *   Copyright (c) 2013-2024 Ramon Santamaria (@raysan5)
- *
- ********************************************************************************************/
-
 #include "raylib.h"
 
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
+/* TODO:
+ * - resolution scale factor
+ */
+
+/**/
+
+#define NULL ((void*)0)
+
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE 1
+
+/**/
+
+#define EASY_COL_COUNT 9
+#define EASY_ROW_COUNT 9
+
+#define MEDIUM_COL_COUNT 16
+#define MEDIUM_ROW_COUNT 16
+
+#define HARD_COL_COUNT 30
+#define HARD_ROW_COUNT 16
+
+/**/
+
+#define DEFAULT_TILE_W 16
+#define DEFAULT_TILE_H 16
+
+/**/
+
+#define REF_SCREEN_H 1080
+
+/**/
+
+#define WINDOW_SCALE 2
+
+#define WINDOW_TITLE "Minesweeper"
+
 int
 main(void)
 {
-  // Initialization
-  //--------------------------------------------------------------------------------------
-  const int screenWidth = 800;
-  const int screenHeight = 450;
+  int defaultWindowW = DEFAULT_TILE_W * MEDIUM_COL_COUNT * WINDOW_SCALE;
+  int defaultWindowH = DEFAULT_TILE_H * MEDIUM_ROW_COUNT * WINDOW_SCALE;
 
-  InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+  const char* p_WindowTitle = WINDOW_TITLE;
 
-  SetTargetFPS(60); // Set our game to run at 60 frames-per-second
-  //--------------------------------------------------------------------------------------
+  if (NULL == p_WindowTitle) {
+    return EXIT_FAILURE;
+  }
 
-  // Main game loop
-  while (!WindowShouldClose()) // Detect window close button or ESC key
-  {
-    // Update
-    //----------------------------------------------------------------------------------
-    // TODO: Update your variables here
-    //----------------------------------------------------------------------------------
+  InitWindow(defaultWindowW, defaultWindowH, p_WindowTitle);
+  SetWindowState(FLAG_VSYNC_HINT);
 
-    // Draw
-    //----------------------------------------------------------------------------------
+  while (!WindowShouldClose()) {
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
 
-    DrawText(
-      "Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-
     EndDrawing();
-    //----------------------------------------------------------------------------------
   }
 
-  // De-Initialization
-  //--------------------------------------------------------------------------------------
-  CloseWindow(); // Close window and OpenGL context
-  //--------------------------------------------------------------------------------------
+  CloseWindow();
 
-  return 0;
+  return EXIT_SUCCESS;
 }
