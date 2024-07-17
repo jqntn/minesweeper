@@ -12,10 +12,7 @@ set_property(TARGET minesweeper PROPERTY C_EXTENSIONS OFF)
 
 include(FetchContent)
 set(FETCHCONTENT_QUIET OFF)
-FetchContent_Declare(
-  raylib
-  URL https://github.com/raysan5/raylib/archive/refs/tags/5.0.tar.gz
-)
+FetchContent_Declare(raylib URL "https://github.com/raysan5/raylib/archive/refs/tags/5.0.tar.gz")
 FetchContent_MakeAvailable(raylib)
 
 target_link_libraries(minesweeper PRIVATE raylib)
